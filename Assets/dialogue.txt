@@ -1,0 +1,17 @@
+-----1-----
+Woah, check out this castle! It's huge... and <b><#16C8F2>cold</color></b>
+
+Hmm, those floating crystals seem to respond to my voice. 
+<i> Try pressing <b><#16C8F2>J</color></b> and <b><#F2522E>K</color></b> </i>.
+
+
+Huh, I guess those strange sounds echoing the halls affect the crystals. 
+<i> The level resets when the music ends.
+
+
+It seems to only work a certain amount of times.
+<i> The counters in the upper left corner let you know how many activations you have left.
+
+
+
+-----2-----
