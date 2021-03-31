@@ -4,63 +4,87 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 using TMPro;
+using System.IO;
 public class SettingsButtons : MonoBehaviour
 {
     [SerializeField] private TMP_Dropdown dropdown;
     [SerializeField] private AudioMixer audioMixer;
-    public TMP_Text texttest;
-    public SettingsHandler settingsHandler;
     public Resolution[] resolutions;
-
-    private void Awake()
-    {
-
-    }
-
+    public SettingsObject loadedSettings;
     private void Start()
     {
-        Debug.Log("Hello World");
-        settingsHandler.loadedSettings = new SettingsObject();
         resolutions = Screen.resolutions;
-        settingsHandler.loadSettings();
+        LoadSettings();
         UpdateDropdown();
     }
-    public void changeVolume(float vol)
+    public void ChangeVolume(float vol)
     {
         audioMixer.SetFloat("volume", vol);
-        settingsHandler.loadedSettings.volume = vol;
-        settingsHandler.saveSettings(settingsHandler.loadedSettings.fullscreen, settingsHandler.loadedSettings.selectedResolution, vol);
-        FindObjectOfType<Slider>().value= vol;
+        if (loadedSettings != null)
+        {
+            loadedSettings.volume = vol;
+            SaveSettings(loadedSettings.fullscreen, loadedSettings.selectedResolution, vol);
+            FindObjectOfType<Slider>().value = vol;
+        }
+
     }
 
-    public void SetFullscreen(bool isFullscreen)
+    public void SetFullscreen(bool fullscreen)
     {
-        Screen.fullScreen = isFullscreen;
-        settingsHandler.loadedSettings.fullscreen = isFullscreen;
-        settingsHandler.saveSettings(isFullscreen, settingsHandler.loadedSettings.selectedResolution, settingsHandler.loadedSettings.volume);
-        FindObjectOfType<Toggle>().isOn = isFullscreen;
+        Screen.fullScreen = fullscreen;
+        loadedSettings.fullscreen = fullscreen;
+        SaveSettings(fullscreen, loadedSettings.selectedResolution, loadedSettings.volume);
+        FindObjectOfType<Toggle>().isOn = fullscreen;
     }
 
     public void UpdateDropdown()
     {
         dropdown.ClearOptions();
         List<string> resolutionStrings = new List<string>();
-        for (int i = 0; i < resolutions.Length; i++) { 
-        
+        for (int i = 0; i < resolutions.Length; i++)
             resolutionStrings.Add(resolutions[i].ToString());
-            texttest.text = texttest.text+resolutions[i].ToString();
-        }
-        
         dropdown.AddOptions(resolutionStrings);
-        dropdown.value = settingsHandler.loadedSettings.selectedResolution;
+        dropdown.value = loadedSettings.selectedResolution;
         dropdown.RefreshShownValue();
-        
+
     }
     public void ChangeResolution(int index)
     {
         Resolution res = resolutions[index];
-        settingsHandler.loadedSettings.selectedResolution=index;
-        settingsHandler.saveSettings(settingsHandler.loadedSettings.fullscreen, index, settingsHandler.loadedSettings.volume);
-        Screen.SetResolution(res.width, res.height, settingsHandler.loadedSettings.fullscreen);
+        loadedSettings.selectedResolution = index;
+        SaveSettings(loadedSettings.fullscreen, index, loadedSettings.volume);
+        Screen.SetResolution(res.width, res.height, loadedSettings.fullscreen);
+    }
+    public void LoadSettings()
+    {
+        try
+        {
+
+            string file = File.ReadAllText(Application.persistentDataPath + "/settings.json");
+
+            loadedSettings = JsonUtility.FromJson<SettingsObject>(file);
+
+        }
+        catch (FileNotFoundException)
+        {
+            var fs = new FileStream(Application.persistentDataPath + "/settings.json", FileMode.Create);
+            fs.Dispose();
+            loadedSettings = new SettingsObject(false, 0, 1.0f);
+            SaveSettings(loadedSettings.fullscreen, loadedSettings.selectedResolution, loadedSettings.volume);
+        }
+        finally
+        {
+            ChangeVolume(loadedSettings.volume);
+            ChangeResolution(loadedSettings.selectedResolution);
+            SetFullscreen(loadedSettings.fullscreen);
+        }
+
+    }
+    public void SaveSettings(bool fullscreen, int resolution, float volume)
+    {
+        loadedSettings = new SettingsObject(fullscreen, resolution, volume);
+        string jsonFormat = JsonUtility.ToJson(loadedSettings);
+        File.WriteAllText(Application.persistentDataPath + "/settings.json", jsonFormat);
+
     }
 }

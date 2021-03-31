@@ -102,9 +102,8 @@
     <Compile Include="Assets\Scripts\DialogueManager.cs" />
     <Compile Include="Assets\Scripts\DialogueTrigger.cs" />
     <Compile Include="Assets\Scripts\DoorActivation.cs" />
-    <Compile Include="Assets\Scripts\InitScript.cs" />
-    <Compile Include="Assets\Scripts\MainMenuButtons.cs" />
     <Compile Include="Assets\Scripts\NextSceneLoader.cs" />
+    <Compile Include="Assets\Scripts\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\PlayBeatOnTime.cs" />
     <Compile Include="Assets\Scripts\PlayerContoller.cs" />
     <Compile Include="Assets\Scripts\PlayerReset.cs" />
@@ -112,9 +111,12 @@
     <Compile Include="Assets\Scripts\ScriptableBeat.cs" />
     <Compile Include="Assets\Scripts\SettingsButtons.cs" />
     <Compile Include="Assets\Scripts\SettingsHandler.cs" />
+    <Compile Include="Assets\Scripts\SettingsMenu.cs" />
     <Compile Include="Assets\Scripts\SettingsObject.cs" />
     <Compile Include="Assets\Scripts\TextChangeScript.cs" />
     <Compile Include="Assets\Scripts\TweenScript.cs" />
+    <Compile Include="Assets\Scripts\UIAudioScript.cs" />
+    <Compile Include="Assets\Scripts\UIScript.cs" />
     <Compile Include="Assets\Scripts\platformMovement.cs" />
     <Compile Include="Assets\Unity-Logs-Viewer\Reporter\MultiKeyDictionary.cs" />
     <Compile Include="Assets\Unity-Logs-Viewer\Reporter\Reporter.cs" />
@@ -124,6 +126,7 @@
     <Compile Include="Assets\Unity-Logs-Viewer\Reporter\Test\TestReporter.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\dialogue.txt" />
     <None Include="Assets\LeanTween\ReadMe.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\Audio\kenney_rpgaudio\License.txt" />

@@ -10,7 +10,8 @@ public class NextSceneLoader : MonoBehaviour
     {
         Invoke("loadNextScene", 0.3f);
     }
-    private void loadNextScene() {
+    public void loadNextScene()
+    {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
