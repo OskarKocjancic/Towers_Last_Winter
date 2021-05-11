@@ -6,18 +6,14 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 public class UIScript : MonoBehaviour
 {
-    [SerializeField] private float loadDelay;
     [SerializeField] private List<GameObject> listOfObjectsToPause = new List<GameObject>();
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private AudioMixer audioMixer;
-    private PlayBeatOnTime playBeatOnTime;
-    private PlayerContoller playerContoller;
+
     private SettingsObject loadedSettings;
     private Resolution[] resolutions;
     private UIAudioScript audioScript;
-
-    private string nextSceneName;
 
 
     private void Awake()
@@ -31,11 +27,6 @@ public class UIScript : MonoBehaviour
         SettingsHandler.ChangeFullscreen(loadedSettings);
         audioScript.PlayBackgroundMusic();
 
-    }
-    private void Start()
-    {
-        playerContoller = FindObjectOfType<PlayerContoller>();
-        playBeatOnTime = FindObjectOfType<PlayBeatOnTime>();
     }
     private void Update()
     {
@@ -59,8 +50,7 @@ public class UIScript : MonoBehaviour
             pauseMenu.SetActive(true);
             Time.timeScale = 0.0f;
             audioScript.PauseBackgroundMusic();
-            //playerContoller.enabled = false;
-            //playBeatOnTime.enabled = false;
+
         }
         else
         {
@@ -75,26 +65,16 @@ public class UIScript : MonoBehaviour
             pauseMenu.SetActive(false);
             Time.timeScale = 1.0f;
             audioScript.PlayBackgroundMusic();
-            //playerContoller.enabled = true;
-            //playBeatOnTime.enabled = true;
+
         }
 
     }
-    public void loadLevel(string x)
-    {
-        nextSceneName = x;
-        Invoke("nextScene", loadDelay);
 
-    }
-    private void nextScene()
-    {
-        SceneManager.LoadScene(nextSceneName);
-    }
-    public void quitGame()
+    public void QuitGame()
     {
         Application.Quit();
     }
-    public void playSound()
+    public void PlaySound()
     {
         audioSource.Play();
     }

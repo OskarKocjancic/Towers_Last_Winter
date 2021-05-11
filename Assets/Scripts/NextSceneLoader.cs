@@ -2,16 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Text.RegularExpressions;
 
 public class NextSceneLoader : MonoBehaviour
 {
-    [SerializeField] private GameObject endScreen;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Invoke("loadNextScene", 0.3f);
+        Invoke("LoadNextScene", 0.3f);
     }
-    public void loadNextScene()
+    public void LoadNextScene()
     {
+        FindObjectOfType<SceneTransition>().FadeToBlack();
+
+        int sceneCounter = PlayerPrefs.GetInt("Level");
+        int currentScene = int.Parse(Regex.Split(SceneManager.GetActiveScene().name, "Level")[1]);
+
+        if (sceneCounter <= currentScene)
+        {
+            PlayerPrefs.SetInt("Level", currentScene);
+        }
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

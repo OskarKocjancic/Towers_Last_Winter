@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: BeatRed
   m_EditorClassIdentifier: 
   color: 1
-  audioGenerate: {fileID: 8300000, guid: 5ce890be154d32a4c94c62f6ce3d7b62, type: 3}
-  audioDissolve: {fileID: 8300000, guid: a3c8ded1d1678f44bb790ae2a91740da, type: 3}
+  audioGenerate: {fileID: 8300000, guid: 63719c946c41bce459f8be49424deb1a, type: 3}
+  audioDissolve: {fileID: 8300000, guid: a06f00b798515154c92a13d964e7ad86, type: 3}
   sprite: {fileID: 21300000, guid: 627da430b2414fb4d886965036916604, type: 3}

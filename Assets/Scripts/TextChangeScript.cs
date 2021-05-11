@@ -27,6 +27,9 @@ public class TextChangeScript : MonoBehaviour
             case "RED":
                 text.SetText(gameObject.name.ToUpper() + ": " + e.redCounter);
                 break;
+            case "GREEN":
+                text.SetText(gameObject.name.ToUpper() + ": " + e.greenCounter);
+                break;
             default:
                 break;
         }
@@ -37,7 +40,7 @@ public class TextChangeScript : MonoBehaviour
     private void BeatComponentScript_changeState(object sender, PlayBeatOnTime.OnInput e)
     {
         if (gameObject.name.ToUpper().Equals(e.beat.color.ToString().ToUpper()))
-            text.SetText(gameObject.name.ToUpper() + ": "+ e.beatCounter);
+            text.SetText(gameObject.name.ToUpper() + ": " + e.beatCounter);
     }
 }
 

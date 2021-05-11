@@ -9,6 +9,7 @@ TagManager:
   - beatSpawner
   - sceneTransition
   - dialogue
+  - Green
   layers:
   - Default
   - TransparentFX

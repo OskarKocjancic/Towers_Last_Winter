@@ -10,15 +10,12 @@ public class SceneTransition : MonoBehaviour
     [SerializeField] private float timeToFadeOut;
     [SerializeField] private float timeDelayed;
     [SerializeField] private LeanTweenType leanTweenType;
-    private GameObject transitionFrame;
+    [SerializeField] private GameObject transitionFrame;
+
     private void Awake()
     {
-        transitionFrame = gameObject;
         if (fadeInOnAwake)
-        {
             FadeFromBlack();
-        }
-
     }
     public void FadeFromBlack()
     {
@@ -29,10 +26,11 @@ public class SceneTransition : MonoBehaviour
             LeanTween.alpha(transitionFrame.GetComponent<RectTransform>(), 0f, timeToFadeIn).setEase(leanTweenType));
     }
 
-    public void fadeToBlack() {
-        Color color=transitionFrame.GetComponent<Image>().color;
+    public void FadeToBlack()
+    {
+        Color color = transitionFrame.GetComponent<Image>().color;
         color.a = 0f;
-        transitionFrame.GetComponent<Image>().color=color;
+        transitionFrame.GetComponent<Image>().color = color;
         LeanTween.delayedCall(transitionFrame, timeDelayed, () =>
             LeanTween.alpha(transitionFrame.GetComponent<RectTransform>(), 1f, timeToFadeOut).setEase(leanTweenType));
     }

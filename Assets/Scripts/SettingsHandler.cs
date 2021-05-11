@@ -57,7 +57,7 @@ public static class SettingsHandler
 
             var fs = new FileStream(Application.persistentDataPath + "/settings.json", FileMode.Create);
             fs.Dispose();
-            loadedSettings = new SettingsObject(false, 0, 1.0f);
+            loadedSettings = new SettingsObject(true, 0, 1.0f);
             SaveSettings(loadedSettings);
         }
         return loadedSettings;

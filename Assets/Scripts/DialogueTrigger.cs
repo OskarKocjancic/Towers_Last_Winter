@@ -16,13 +16,21 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (triggerOnLoad)
         {
-            FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
+            TriggerDialogue();
         }
     }
-    public void TriggerDialogue() {
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        TriggerDialogue();
+    }
+
+    public void TriggerDialogue()
+    {
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
     }
-    public void SkipDialogue() {
+    public void SkipDialogue()
+    {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             FindObjectOfType<DialogueManager>().nextLine();

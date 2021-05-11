@@ -13,20 +13,22 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private Slider slider;
     private SettingsObject loadedSettings;
 
-    private void Awake()
+    private void Start()
     {
         loadedSettings = SettingsHandler.LoadSettings();
         SettingsHandler.UpdateVolumeUI(loadedSettings, slider);
+        SettingsHandler.ChangeVolume(loadedSettings, audioMixer);
     }
-
     public void SetVolume(float vol)
     {
         loadedSettings.volume = vol;
         SettingsHandler.ChangeVolume(loadedSettings, audioMixer);
+        SettingsHandler.SaveSettings(loadedSettings);
     }
 
     public void Quit()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
 }

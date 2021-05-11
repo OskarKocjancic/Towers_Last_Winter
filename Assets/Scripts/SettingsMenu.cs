@@ -16,6 +16,8 @@ public class SettingsMenu : MonoBehaviour
     private Resolution[] resolutions;
     private UIAudioScript audioScript;
 
+
+
     private void Awake()
     {
         audioScript = FindObjectOfType<UIAudioScript>();
@@ -52,5 +54,9 @@ public class SettingsMenu : MonoBehaviour
         SettingsHandler.ChangeResolution(loadedSettings, resolutions);
         SettingsHandler.SaveSettings(loadedSettings);
 
+    }
+    public void ResetProgress()
+    {
+        PlayerPrefs.DeleteKey("Level");
     }
 }

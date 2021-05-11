@@ -7,19 +7,26 @@ public class UIAudioScript : MonoBehaviour
 {
 
     [SerializeField] private AudioSource audioClick;
+    [SerializeField] private AudioSource playerHurt;
     [SerializeField] private AudioSource audioBackgroundMusic;
+    [SerializeField] private AudioSource audioDrums;
 
     public void PlayUIClick()
     {
         audioClick.Play();
     }
+    public void PlayPlayerHurt()
+    {
+        playerHurt.Play();
+    }
     public void PlayBackgroundMusic()
     {
-        audioBackgroundMusic.Play();
+        if (audioBackgroundMusic != null) audioBackgroundMusic.Play();
+        if (audioDrums != null) audioDrums.Play();
     }
     public void PauseBackgroundMusic()
     {
-        audioBackgroundMusic.Pause();
-        
+        if (audioBackgroundMusic != null) audioBackgroundMusic.Pause();
+        if (audioDrums != null) audioDrums.Pause();
     }
 }

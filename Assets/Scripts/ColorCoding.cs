@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class ColorCoding : MonoBehaviour
 {
-    
-   public enum beatColor { white, red, blue, yellow };
+
+    public enum beatColor { white, red, blue, yellow, green, purple };
 }

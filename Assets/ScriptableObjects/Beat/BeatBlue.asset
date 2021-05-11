@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: BeatBlue
   m_EditorClassIdentifier: 
   color: 2
-  audioGenerate: {fileID: 8300000, guid: e5b331246d9df8f4ca518efee34d8bf8, type: 3}
-  audioDissolve: {fileID: 8300000, guid: a839048737374254bb3fc2950460997f, type: 3}
+  audioGenerate: {fileID: 8300000, guid: a438b21125bc3cf47bca01630a172a94, type: 3}
+  audioDissolve: {fileID: 8300000, guid: 621f2359befa8144990417271043a8c7, type: 3}
   sprite: {fileID: 21300000, guid: 64658b2e27e675247ae9d60e4abd246e, type: 3}

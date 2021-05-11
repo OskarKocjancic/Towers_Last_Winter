@@ -26,7 +26,7 @@ public class PlayerContoller : MonoBehaviour
     private BoxCollider2D bd;
     private SpriteRenderer sr;
     [SerializeField] private ParticleSystem dustParticles;
-
+    [SerializeField] public Transform startingPosition;
 
     private void Awake  ()
     {

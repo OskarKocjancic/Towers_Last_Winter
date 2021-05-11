@@ -96,6 +96,7 @@
     <Compile Include="Assets\LeanTween\Framework\LeanTest.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanTween.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanTweenExt.cs" />
+    <Compile Include="Assets\LevelSelect.cs" />
     <Compile Include="Assets\Scripts\BeatComponentScript.cs" />
     <Compile Include="Assets\Scripts\ColorCoding.cs" />
     <Compile Include="Assets\Scripts\Dialogue.cs" />
@@ -118,6 +119,7 @@
     <Compile Include="Assets\Scripts\UIAudioScript.cs" />
     <Compile Include="Assets\Scripts\UIScript.cs" />
     <Compile Include="Assets\Scripts\platformMovement.cs" />
+    <Compile Include="Assets\SpikesScript.cs" />
     <Compile Include="Assets\Unity-Logs-Viewer\Reporter\MultiKeyDictionary.cs" />
     <Compile Include="Assets\Unity-Logs-Viewer\Reporter\Reporter.cs" />
     <Compile Include="Assets\Unity-Logs-Viewer\Reporter\ReporterGUI.cs" />

@@ -9,16 +9,19 @@ public class PlayBeatOnTime : MonoBehaviour
 {
     [SerializeField] private ScriptableBeat beatRed;
     [SerializeField] private ScriptableBeat beatBlue;
+    [SerializeField] private ScriptableBeat beatGreen;
+
     [SerializeField] public int redLives;
     [SerializeField] public int blueLives;
-    [SerializeField] private GameObject textRed;
-    [SerializeField] private GameObject textBlue;
+    [SerializeField] public int greenLives;
 
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioSource audioSource2;
+    [SerializeField] private AudioSource audioSourceMusic;
+    [SerializeField] private AudioSource audioSourceDrums;
     [SerializeField] private float beatDelay;
-    private int redCounter;
-    private int blueCounter;
+
+    [SerializeField] private int redCounter;
+    [SerializeField] private int blueCounter;
+    [SerializeField] private int greenCounter;
     private float beatDelayCounter;
 
 
@@ -32,34 +35,36 @@ public class PlayBeatOnTime : MonoBehaviour
     {
         public int redCounter;
         public int blueCounter;
+        public int greenCounter;
     }
     public event EventHandler<OnInput> changeState;
     public event EventHandler<AllCounters> resetState;
 
     void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
         beatDelayCounter = beatDelay;
         redCounter = redLives;
         blueCounter = blueLives;
-        resetState?.Invoke(this, new AllCounters { redCounter=this.redCounter, blueCounter= this.blueCounter});
+        greenCounter = greenLives;
+        resetState?.Invoke(this, new AllCounters { redCounter = redLives, blueCounter = blueLives });
     }
 
 
     void Update()
     {
-        if (!audioSource2.isPlaying)
+        //Debug.Log(new { redCounter, blueCounter, greenCounter });
+
+        if (!audioSourceDrums.isPlaying)
         {
-            
-            audioSource2.Play();
+            audioSourceDrums.Play();
             redCounter = redLives;
             blueCounter = blueLives;
-            
-            resetState?.Invoke(this, new AllCounters { redCounter = redLives, blueCounter = blueLives});
+            greenCounter = greenLives;
+            resetState?.Invoke(this, new AllCounters { redCounter = redLives, blueCounter = blueLives, greenCounter = greenLives });
         }
 
-        if (beatDelayCounter<=0f)
-        { 
+        if (beatDelayCounter <= 0f)
+        {
             if (Input.inputString.ToUpper() == "J" && blueCounter > 0)
             {
                 blueCounter--;
@@ -69,10 +74,16 @@ public class PlayBeatOnTime : MonoBehaviour
             if (Input.inputString.ToUpper() == "K" && redCounter > 0)
             {
                 redCounter--;
-                changeState?.Invoke(this, new OnInput { beat = beatRed, beatCounter = redCounter});
+                changeState?.Invoke(this, new OnInput { beat = beatRed, beatCounter = redCounter });
                 beatDelayCounter = beatDelay;
             }
-            
+            if (Input.inputString.ToUpper() == "L" && greenCounter > 0)
+            {
+                greenCounter--;
+                changeState?.Invoke(this, new OnInput { beat = beatGreen, beatCounter = greenCounter });
+                beatDelayCounter = beatDelay;
+            }
+
         }
         else
         {
@@ -81,9 +92,12 @@ public class PlayBeatOnTime : MonoBehaviour
 
 
     }
-
-
-
-
-
+    public void ResetLevel()
+    {
+        audioSourceMusic.Play();
+        redCounter = redLives;
+        blueCounter = blueLives;
+        greenCounter = greenLives;
+        resetState?.Invoke(this, new AllCounters { redCounter = redLives, blueCounter = blueLives, greenCounter = greenLives });
+    }
 }
